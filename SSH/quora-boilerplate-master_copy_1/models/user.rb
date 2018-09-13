@@ -3,4 +3,5 @@ class User < ActiveRecord::Base
 	validates :password, format: { with: /\w+[^ ]/ }, uniqueness: true
 	has_secure_password
 	has_many :question
+	has_many :answer
 end

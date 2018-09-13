@@ -1,10 +1,15 @@
 
-<h2><%= @single.question_to_ask %></h2>
-<form method="post" action="/answers">
-	<input type="text" placeholder="Answer" name="answer[answer]">
-	<input type="submit" value="Send">
-</form>
-<h3>Answers Given:</h3>
-<% @answers.each do |a| %>
-	<p><% a.answer %></p>
+<h2><%= @question.question_to_ask %></h2>
+<% if @question.user_id != @user.id %>
+	<h3>Your answer:</h3>
+	<form method="post" action="/answers/<%= @question.id %>">
+		<input type="text" placeholder="Answer" name="answer[answer]">
+		<input type="submit" value="Send">
+	</form>
+<% end %>
+<% if @answers %>
+	<h3>Answers Given:</h3>
+	<% @answers.each do |a| %>
+		<p>"<%= a.answer %>" answered by <%= a.answerer_name %></p>
+	<% end %>
 <% end %>

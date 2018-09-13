@@ -1,7 +1,9 @@
 
-<h2>Welcome Back, <%= @user.email %></h2>
+<h2>Welcome Back, <%= @user.username %></h2>
 <h3>Got a question? Ask away!</h3>
 <form method="post" action="/questions">
 	<input type="text" placeholder="Question" name="question[question_to_ask]"><br>
 	<input type="submit" value="Send">
 </form>
+<br>
+<h3>Want to answer some questions? <a href="/question_all">Start here!</a></h3>

@@ -11,7 +11,11 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/">Quora Clone</a>
+      <% if @user %>
+        <a class="navbar-brand" href="/users/<%= @user.id %>">Quora Clone</a>
+      <% else %>
+        <a class="navbar-brand" href="/">Quora Clone</a>
+      <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -19,7 +23,7 @@
         <ul class="navbar-nav">
           <% if @user %>
           <li class="nav-item">
-            <a class="nav-link" href="/question_view">Question</a>
+            <a class="nav-link" href="/question_view">Your question</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/logout">Log out</a>

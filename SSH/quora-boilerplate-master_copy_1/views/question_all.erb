@@ -1,0 +1,7 @@
+<h2>All question</h2>
+<% @question.each do |q| %>
+<a href="/question/<%= q.id %>">
+	<p>"<%= q.question_to_ask %>" asked by: <%= q.questioner_name %></p>
+</a>
+<br>
+<% end %>

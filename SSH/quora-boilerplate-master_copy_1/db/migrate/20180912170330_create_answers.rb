@@ -4,7 +4,6 @@ class CreateAnswers < ActiveRecord::Migration[5.0]
     create_table :answers do |t|
     	t.string :answer
     	t.references :question
-    	t.string :answerer_name
     	# t.belongs_to :question, :foreign_key => :question_id
     	# t.integer :question_id
 
