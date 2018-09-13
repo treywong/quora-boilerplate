@@ -1,0 +1,10 @@
+
+<h2><%= @single.question_to_ask %></h2>
+<form method="post" action="/answers">
+	<input type="text" placeholder="Answer" name="answer[answer]">
+	<input type="submit" value="Send">
+</form>
+<h3>Answers Given:</h3>
+<% @answers.each do |a| %>
+	<p><% a.answer %></p>
+<% end %>

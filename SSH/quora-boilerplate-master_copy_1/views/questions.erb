@@ -1,0 +1,7 @@
+<h2>Question</h2>
+<% @question.each do |q| %>
+<a href="/question/<%= q.id %>">
+	<p><%= q.question_to_ask %></p>
+</a>
+<br>
+<% end %>
