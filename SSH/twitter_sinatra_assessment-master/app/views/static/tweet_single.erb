@@ -1,0 +1,27 @@
+
+<h2><%= @tweet.post %></h2>
+
+<% if session[:user_id] == @tweet.user_id %>
+	<h3>Want to update?</h3>
+	<form method="post" action="/update_tweet/<%= @tweet.id %>">
+		<input type="text" placeholder="Tweet" name="tweet[post]" required>
+		<input type="submit" value="Update">
+	</form>
+	<br>
+
+	<h3>Want to remove this tweet</h3>
+	<form method="post" action="/delete_tweet/<%= @tweet.id %>">
+		<input type="submit" value="Delete">
+	</form>
+<% else %>
+	<p>posted by <a href="/users/<%= @tweet.user_id %>"><%= @tweet.username %></a></p>
+	<% if Follower.find_by(follower_id: session[:user_id],user_id: @tweet.user_id) %>
+		<form method="post" action="/delete_follow/<%= @tweet.user_id %>">
+			<input type="submit" value="Unfollow">
+		</form>
+	<% else %>
+		<form method="post" action="/follow/<%= @tweet.user_id %>">
+			<input type="submit" value="Follow">
+		</form>
+	<% end %>
+<% end %>

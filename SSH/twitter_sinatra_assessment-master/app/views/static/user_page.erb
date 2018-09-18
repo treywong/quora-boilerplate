@@ -1,0 +1,37 @@
+
+<% if session[:user_id] == @user.id %>
+	<h2>Welcome, <%= @user.username %>!</h2><br>
+	<p>You have <%= Follower.all.where(user_id: @user.id).count(:id) %> followers</p>
+
+	<h3>Post your thoughts!</h3>
+	<form method="post" action="/tweets">
+		<input type="text" placeholder="Tweet" name="tweet[post]" required>
+		<input type="submit" value="Send">
+	</form>
+	<br>
+<% else %>
+	<h2>Welcome, <%= User.find_by_id(session[:user_id]).username %> to <%= @user.username %> page!</h2><br>
+	<p><%= @user.username %> has <%= Follower.all.where(user_id: @user.id).count(:id) %> followers</p>
+	<% if Follower.find_by(follower_id: session[:user_id],user_id: @user.id) %>
+		<form method="post" action="/delete_follow/<%= @user.id %>">
+			<input type="submit" value="Unfollow">
+		</form>
+	<% else %>
+		<form method="post" action="/follow/<%= @user.id %>">
+			<input type="submit" value="Follow">
+		</form>
+	<% end %>
+<% end %>
+
+<% if session[:user_id] == @user.id %>
+	<h3>Your recent tweets:</h3>
+<% else %>
+	<h3><%= @user.username %> recent tweets:</h3>
+<% end %>
+
+<% @tweet.each do |t| %>
+	<a href="/tweet/<%= t.id %>">
+		<p><%= t.post %></p>
+	</a>
+<br>
+<% end %>

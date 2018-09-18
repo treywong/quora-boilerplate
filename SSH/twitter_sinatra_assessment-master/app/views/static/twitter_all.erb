@@ -1,0 +1,10 @@
+
+<% @tweet.each do |t| %>
+	<a href="/users/<%= t.user_id %>">
+		<p><strong><%= t.username %></strong></p>
+	</a>
+	<a href="/tweet/<%= t.id %>">
+		<p><%= t.post %></p>
+	</a>
+<br>
+<% end %>

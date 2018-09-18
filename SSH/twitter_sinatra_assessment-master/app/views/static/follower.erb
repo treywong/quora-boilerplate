@@ -1,0 +1,14 @@
+
+<h2>You're following <%= @follower.count(:id) %> people:</h2>
+<% @follower.each do |f| %>
+	<a href="/users/<%= f.user_id %>">
+		<p><%= f.username %></p>
+	</a>
+<% end %>
+
+<h2>You're followed by  <%= @leader.count(:id) %> people:</h2>
+<% @leader.each do |l| %>
+	<a href="/users/<%= l.follower_id %>">
+		<p><%= l.follower_name %></p>
+	</a>
+<% end %>

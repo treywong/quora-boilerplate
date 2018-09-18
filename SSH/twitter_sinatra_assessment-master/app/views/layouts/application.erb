@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>Twitter Clone</title>
+	</head>
+	<body>
+		<h1>
+			<% if @user %>
+				<a href="/users/<%= @user.id %>">Twitter Clone</a>
+			<% else %>
+        		<a href="/">Twitter Clone</a>
+    		<% end %>
+		</h1>
+		<% if @user %>
+			<a href="/twitter_all">Home</a>
+			<a href="/follow">Following</a>
+			<a href="/logout">Log out</a>
+		<% else %>
+			<a href="/login">Log In</a>
+			<a href="/signup">Sign Up</a>
+		<% end %>
+		
+		<%= yield %>
+	</body>
+</html>
